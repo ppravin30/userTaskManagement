@@ -1,4 +1,10 @@
-'use client'
+
+
+
+
+
+
+'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -20,10 +26,7 @@ const CreateTaskPage: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,8 +58,10 @@ const CreateTaskPage: React.FC = () => {
   return (
     <div className="max-w-lg mx-auto mt-8 px-4">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">Create New Task</h1>
-        
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Create New Task</h1>  
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="task" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -71,7 +76,7 @@ const CreateTaskPage: React.FC = () => {
               required
               maxLength={100}
               placeholder="Enter task name..."
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
             />
           </div>
 
@@ -87,7 +92,7 @@ const CreateTaskPage: React.FC = () => {
               onChange={handleChange}
               required
               min={today}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
             />
           </div>
 
@@ -101,7 +106,7 @@ const CreateTaskPage: React.FC = () => {
               value={formData.category}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
             >
               <option value="">Select a category</option>
               <option value="Work">Work</option>
@@ -120,22 +125,15 @@ const CreateTaskPage: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="flex-1 bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? (
-                <div className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Creating...
-                </div>
-              ) : (
-                'Create Task'
-              )}
+              {loading ? 'Creating...' : 'Create Task'}
             </button>
-            
+
             <button
               type="button"
               onClick={() => router.push('/')}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors"
+              className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors"
             >
               Cancel
             </button>
@@ -147,3 +145,12 @@ const CreateTaskPage: React.FC = () => {
 };
 
 export default CreateTaskPage;
+
+{/*
+<button
+  onClick={() => router.push('/login')}
+  className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+>
+  Login
+</button>
+*/}
