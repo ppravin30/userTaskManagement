@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 const prisma = new PrismaClient()
 
 export default async function Home() {
-  redirect('/create-user')
+
   const cookieStore = await cookies()
   const userCookie = cookieStore.get('user')
 
