@@ -1,3 +1,31 @@
+import './globals.css'
+import { cookies } from 'next/headers'
+import Navbar from '@/components/Navbar'
+
+export const metadata = {
+  title: 'Task Manager',
+  description: 'Manage your tasks easily',
+}
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const userCookie = cookieStore.get('user')
+
+  const showNavbar = !!userCookie // Show Navbar only if user is signed up
+
+  return (
+    <html lang="en">
+      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+        {showNavbar && <Navbar />}
+        {children}
+      </body>
+    </html>
+  )
+}
+
+
+
+/*
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -28,3 +56,4 @@ export default function RootLayout({
     </html>
   );
 }
+  */

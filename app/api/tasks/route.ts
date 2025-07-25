@@ -6,8 +6,10 @@ const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { task, dueDate, category } = body;
+    
+    const { task, dueDate, category }  = await req.json();
+    // // const { task, dueDate, category } = body;
+    // const {data} = body;
 
     if (!task || !dueDate || !category) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
